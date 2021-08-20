@@ -7,7 +7,8 @@ public class LoanCalcController {
     /**
      * TODO Validates and logs request
      */
-    public static int createRequest() {
-        return LoanCalcService.createRequest();
+    public int createRequest(LoanRequest request) {
+        LoanCalcService loanCalcService = new LoanCalcService();
+        return loanCalcService.createRequest(request);
     }
 }
