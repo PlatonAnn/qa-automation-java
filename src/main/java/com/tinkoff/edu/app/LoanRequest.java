@@ -1,11 +1,11 @@
 package com.tinkoff.edu.app;
 
 public class LoanRequest {
-    private final PersonEmployment type;
+    private final PersonEmploymentType type;
     private final int months;
     private final int amount;
 
-    public LoanRequest(PersonEmployment type, int months, int amount) {
+    public LoanRequest(PersonEmploymentType type, int months, int amount) {
         this.type = type;
         this.months = months;
         this.amount = amount;
@@ -20,7 +20,7 @@ public class LoanRequest {
     }
 
     public String toString() {
-        return "RQ: {"
+        return "Request: {"
                 + this.type + ", "
                 + this.getAmount()
                 + " for " + getMonths() +

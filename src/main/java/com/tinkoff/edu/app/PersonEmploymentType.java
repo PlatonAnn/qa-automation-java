@@ -1,5 +1,5 @@
 package com.tinkoff.edu.app;
 
-public enum PersonEmployment {
+public enum PersonEmploymentType {
     PERSON, IP, OOO, SELF_EMPLOYMENT
 }

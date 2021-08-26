@@ -1,17 +1,18 @@
 package com.tinkoff.edu.test;
 
-import com.tinkoff.edu.app.LoanCalcController;
-import com.tinkoff.edu.app.LoanRequest;
-import com.tinkoff.edu.app.PersonEmployment;
+import com.tinkoff.edu.app.*;
 
-/**
- * Loan Calc Test
- */
 public class LoanCalcTest {
+
+    /**
+     * Loan Calc Test
+     * @param args
+     */
     public static void main(String... args) {
-        LoanRequest request = new LoanRequest(PersonEmployment.SELF_EMPLOYMENT, 10, 1000);
-        LoanCalcController loanCalcController = new LoanCalcController();
-        int requestId = loanCalcController.createRequest(request);
+        LoanRequest request = new LoanRequest(PersonEmploymentType.SELF_EMPLOYMENT, 10, 1000);
+        LoanCalcController loanCalcController = new LoanCalcController(new LoanCalcService(new StaticVariableLoanCalcRepository()));
+        LoanResponse response = loanCalcController.createRequest(request);
+        int requestId = response.getRequestId();
         System.out.println(request);
         System.out.println(requestId + " must be 1");
     }
