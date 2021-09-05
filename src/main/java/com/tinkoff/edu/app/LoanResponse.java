@@ -3,12 +3,10 @@ package com.tinkoff.edu.app;
 public class LoanResponse {
     private LoanResponseType responseType;
     private int requestId;
-    private LoanRequest request;
 
-    public LoanResponse(int requestId, LoanRequest request) {
+    public LoanResponse(LoanResponseType responseType, int requestId) {
         this.requestId = requestId;
-        this.request = request;
-        this.responseType = LoanResponseType.APPROVED;
+        this.responseType = responseType;
     }
 
     public LoanResponseType getResponseType() {
@@ -17,9 +15,5 @@ public class LoanResponse {
 
     public int getRequestId() {
         return requestId;
-    }
-
-    public LoanRequest getRequest() {
-        return request;
     }
 }

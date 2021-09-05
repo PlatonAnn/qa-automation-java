@@ -9,12 +9,13 @@ public class LoanCalcService implements LoanCalculation {
 
     /**
      * Loan calculation, decision-making
+     *
      * @param request
      * @return loanResponse
      */
-    public LoanResponse createRequest(LoanRequest request) {
+    public LoanResponse createRequest(LoanRequest request, LoanResponseType responseType) {
         int requestId = repo.save(request);
-        LoanResponse loanResponse = new LoanResponse(requestId, request);
+        LoanResponse loanResponse = new LoanResponse(responseType, requestId);
         return loanResponse;
     }
 }
