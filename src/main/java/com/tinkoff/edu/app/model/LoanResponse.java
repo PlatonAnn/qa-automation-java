@@ -1,10 +1,14 @@
-package com.tinkoff.edu.app;
+package com.tinkoff.edu.app.model;
+
+import com.tinkoff.edu.app.enums.LoanResponseType;
+
+import java.util.UUID;
 
 public class LoanResponse {
     private LoanResponseType responseType;
-    private int requestId;
+    private UUID requestId;
 
-    public LoanResponse(LoanResponseType responseType, int requestId) {
+    public LoanResponse(LoanResponseType responseType, UUID requestId) {
         this.requestId = requestId;
         this.responseType = responseType;
     }
@@ -13,7 +17,7 @@ public class LoanResponse {
         return responseType;
     }
 
-    public int getRequestId() {
+    public UUID getRequestId() {
         return requestId;
     }
 }
