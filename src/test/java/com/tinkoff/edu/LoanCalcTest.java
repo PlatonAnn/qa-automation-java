@@ -13,12 +13,13 @@ public class LoanCalcTest {
     @BeforeEach
     public void init() {
         //Given
-        request = new LoanRequest(PersonEmploymentType.OOO, 10, 1000);
         loanCalcController = new LoanCalcController(new LoanCalcService(new StaticVariableLoanCalcRepository()));
     }
 
     @Test
     public void shouldGetId1WhenFirstCall() {
+        //Given
+        request = new LoanRequest(PersonEmploymentType.OOO, 10, 1000);
         //When
         LoanResponse response = loanCalcController.createRequest(request);
         int requestId = response.getRequestId();
@@ -29,6 +30,7 @@ public class LoanCalcTest {
     @Test
     public void shouldGetIncrementedIdWhenAnyCall() {
         //Given
+        request = new LoanRequest(PersonEmploymentType.OOO, 10, 1000);
         loanCalcController = new LoanCalcController(new LoanCalcService(new StaticVariableLoanCalcRepository(5)));
         //When
         LoanResponse response = loanCalcController.createRequest(request);
