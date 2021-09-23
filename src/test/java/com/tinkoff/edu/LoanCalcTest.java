@@ -18,7 +18,6 @@ public class LoanCalcTest {
     @BeforeEach
     public void init() {
         //Given
-        request = new LoanRequest(PersonEmploymentType.OOO, 10, 1000, "Лев", "Николаевич", "Толстой");
         loanCalcController = new LoanCalcController(new LoanCalcService(new LoanCalcRepositoryArray()));
     }
 
@@ -65,9 +64,9 @@ public class LoanCalcTest {
         //When
         LoanResponse response = loanCalcController.createRequest(request);
         LoanResponseType actualResponseType = response.getResponseType();
-        LoanResponseType expectedresponseType = LoanResponseType.DEСLINED;
+        LoanResponseType expectedResponseType = LoanResponseType.DEСLINED;
         //Then
-        assertEquals(expectedresponseType, actualResponseType);
+        assertEquals(expectedResponseType, actualResponseType);
     }
 
     @Test

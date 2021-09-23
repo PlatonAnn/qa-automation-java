@@ -5,5 +5,5 @@ import com.tinkoff.edu.app.model.LoanRequest;
 import com.tinkoff.edu.app.model.LoanResponse;
 
 public interface LoanCalculation {
-    LoanResponse createRequest(LoanRequest request, LoanResponseType responseType);
+    LoanResponse loanCalculation(LoanRequest request, LoanResponseType responseType);
 }

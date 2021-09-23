@@ -6,17 +6,17 @@ public class LoanRequest {
     private final PersonEmploymentType type;
     private final int months;
     private final int amount;
-    private String firstname;
-    private String middlename;
-    private String lastname;
+    private String firstName;
+    private String middleName;
+    private String lastName;
 
-    public LoanRequest(PersonEmploymentType type, int months, int amount, String firstname, String middlename, String lastname) {
+    public LoanRequest(PersonEmploymentType type, int months, int amount, String firstName, String middleName, String lastName) {
         this.type = type;
         this.months = months;
         this.amount = amount;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
     }
 
     public int getMonths() {
@@ -29,5 +29,17 @@ public class LoanRequest {
 
     public PersonEmploymentType getType() {
         return type;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 }

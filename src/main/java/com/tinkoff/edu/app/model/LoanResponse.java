@@ -20,4 +20,8 @@ public class LoanResponse {
     public UUID getRequestId() {
         return requestId;
     }
+
+    public void setResponseType(LoanResponseType responseType) {
+        this.responseType = responseType;
+    }
 }

@@ -3,7 +3,7 @@ package com.tinkoff.edu.app.repository;
 import com.tinkoff.edu.app.model.LoanRequest;
 
 public class LoanCalcRepositoryVariable {
-    //        implements LoanCalcRepository
+    //implements LoanCalcRepository
     private int requestId = 0;
 
     public LoanCalcRepositoryVariable() {

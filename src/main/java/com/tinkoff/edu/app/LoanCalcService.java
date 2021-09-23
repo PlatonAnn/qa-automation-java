@@ -21,9 +21,8 @@ public class LoanCalcService implements LoanCalculation {
      * @param request
      * @return loanResponse
      */
-    public LoanResponse createRequest(LoanRequest request, LoanResponseType responseType) {
-        UUID requestId = repo.save(request);
-        LoanResponse loanResponse = new LoanResponse(responseType, requestId);
+    public LoanResponse loanCalculation(LoanRequest request, LoanResponseType responseType) {
+        LoanResponse loanResponse = repo.save(request, responseType);
         return loanResponse;
     }
 }
