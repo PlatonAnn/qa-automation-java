@@ -19,12 +19,7 @@ public class LoanRequest {
         return amount;
     }
 
-    public String toString() {
-        return "Request: {"
-                + this.type + ", "
-                + this.getAmount()
-                + " for " + getMonths() +
-                "}";
+    public PersonEmploymentType getType() {
+        return type;
     }
-
 }
