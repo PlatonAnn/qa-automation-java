@@ -1,6 +1,11 @@
 package com.tinkoff.edu;
 
 import com.tinkoff.edu.app.*;
+import com.tinkoff.edu.app.enums.LoanResponseType;
+import com.tinkoff.edu.app.enums.PersonEmploymentType;
+import com.tinkoff.edu.app.model.LoanRequest;
+import com.tinkoff.edu.app.model.LoanResponse;
+import com.tinkoff.edu.app.repository.LoanCalcRepositoryArray;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,135 +18,79 @@ public class LoanCalcTest {
     @BeforeEach
     public void init() {
         //Given
-        loanCalcController = new LoanCalcController(new LoanCalcService(new StaticVariableLoanCalcRepository()));
-    }
-
-    @Test
-    public void shouldGetId1WhenFirstCall() {
-        //Given
-        request = new LoanRequest(PersonEmploymentType.OOO, 10, 1000);
-        //When
-        LoanResponse response = loanCalcController.createRequest(request);
-        int requestId = response.getRequestId();
-        //Then
-        assertEquals(1, requestId);
-    }
-
-    @Test
-    public void shouldGetIncrementedIdWhenAnyCall() {
-        //Given
-        request = new LoanRequest(PersonEmploymentType.OOO, 10, 1000);
-        loanCalcController = new LoanCalcController(new LoanCalcService(new StaticVariableLoanCalcRepository(5)));
-        //When
-        LoanResponse response = loanCalcController.createRequest(request);
-        int requestId = response.getRequestId();
-        //Then
-        assertEquals(6, requestId);
-    }
-
-    @Test
-    public void shouldGetErrorWhenApplyNullRequest() {
-        //Given
-        request = new LoanRequest(null, 0, 0);
-        //When
-        LoanResponse response = loanCalcController.createRequest(request);
-        int actualrequestId = response.getRequestId();
-        //Then
-        assertEquals(-1, actualrequestId);
-    }
-
-    @Test
-    public void shouldGetErrorWhenApplyZeroOrNegativeAmountRequest() {
-        //Given
-        request = new LoanRequest(PersonEmploymentType.OOO, 12, -500);
-        //When
-        LoanResponse response = loanCalcController.createRequest(request);
-        int actualrequestId = response.getRequestId();
-        //Then
-        assertEquals(-1, actualrequestId);
-    }
-
-    @Test
-    public void shouldGetErrorWhenApplyZeroOrNagativeMonthsRequest() {
-        //Given
-        request = new LoanRequest(PersonEmploymentType.OOO, -5, 25_000);
-        //When
-        LoanResponse response = loanCalcController.createRequest(request);
-        int actualrequestId = response.getRequestId();
-        //Then
-        assertEquals(-1, actualrequestId);
+        loanCalcController = new LoanCalcController(new LoanCalcService(new LoanCalcRepositoryArray()));
     }
 
     @Test
     public void shouldGetResponseApproveWhenPersonRequest() {
         //Given
-        request = new LoanRequest(PersonEmploymentType.PERSON, 12, 10_000);
+        request = new LoanRequest(PersonEmploymentType.PERSON, 12, 10_000, "Гена", "Петрович", "Пупыркин");
         //When
         LoanResponse response = loanCalcController.createRequest(request);
-        LoanResponseType actualresponsetype = response.getResponseType();
-        LoanResponseType expectedresponsetype = LoanResponseType.APPROVED;
+        LoanResponseType actualResponseType = response.getResponseType();
+        LoanResponseType expectedResponseType = LoanResponseType.APPROVED;
         //Then
-        assertEquals(expectedresponsetype, actualresponsetype);
+        assertEquals(expectedResponseType, actualResponseType);
     }
 
     @Test
     public void shouldGetResponseDeclinedWhenPersonRequest() {
         //Given
-        request = new LoanRequest(PersonEmploymentType.PERSON, 13, 10_001);
+        request = new LoanRequest(PersonEmploymentType.PERSON, 13, 10_001, "Гена", "Петрович", "Пупыркин");
         //When
         LoanResponse response = loanCalcController.createRequest(request);
-        LoanResponseType actualresponsetype = response.getResponseType();
-        LoanResponseType expectedresponsetype = LoanResponseType.DEСLINED;
+        LoanResponseType actualResponseType = response.getResponseType();
+        LoanResponseType expectedResponseType = LoanResponseType.DEСLINED;
         //Then
-        assertEquals(expectedresponsetype, actualresponsetype);
+        assertEquals(expectedResponseType, actualResponseType);
     }
 
     @Test
     public void shouldGetResponseApproveWhenOOORequest() {
         //Given
-        request = new LoanRequest(PersonEmploymentType.OOO, 11, 10_001);
+        request = new LoanRequest(PersonEmploymentType.OOO, 11, 10_001, "Гена", "Петрович", "Пупыркин");
         //When
         LoanResponse response = loanCalcController.createRequest(request);
-        LoanResponseType actualresponsetype = response.getResponseType();
-        LoanResponseType expectedresponsetype = LoanResponseType.APPROVED;
+        LoanResponseType actualResponseType = response.getResponseType();
+        LoanResponseType expectedResponseType = LoanResponseType.APPROVED;
         //Then
-        assertEquals(expectedresponsetype, actualresponsetype);
+        assertEquals(expectedResponseType, actualResponseType);
     }
 
     @Test
     public void shouldGetResponseDeclinedWhenOOORequest() {
         //Given
-        request = new LoanRequest(PersonEmploymentType.OOO, 666, 10_000);
+        request = new LoanRequest(PersonEmploymentType.OOO, 666, 10_000, "Гена", "Петрович", "Пупыркин");
         //When
         LoanResponse response = loanCalcController.createRequest(request);
-        LoanResponseType actualresponsetype = response.getResponseType();
-        LoanResponseType expectedresponsetype = LoanResponseType.DEСLINED;
+        LoanResponseType actualResponseType = response.getResponseType();
+        LoanResponseType expectedResponseType = LoanResponseType.DEСLINED;
         //Then
-        assertEquals(expectedresponsetype, actualresponsetype);
+        assertEquals(expectedResponseType, actualResponseType);
     }
 
     @Test
     public void shouldGetResponseDeclinedWhenOOORequeston12months() {
         //Given
-        request = new LoanRequest(PersonEmploymentType.OOO, 12, 10_001);
+        request = new LoanRequest(PersonEmploymentType.OOO, 12, 10_001, "Гена", "Петрович", "Пупыркин");
         //When
         LoanResponse response = loanCalcController.createRequest(request);
-        LoanResponseType actualresponsetype = response.getResponseType();
-        LoanResponseType expectedresponsetype = LoanResponseType.DEСLINED;
+        LoanResponseType actualResponseType = response.getResponseType();
+        LoanResponseType expectedResponseType = LoanResponseType.DEСLINED;
         //Then
-        assertEquals(expectedresponsetype, actualresponsetype);
+        assertEquals(expectedResponseType, actualResponseType);
     }
 
     @Test
     public void shouldGetResponseDeclinedWhenIPRequest() {
         //Given
-        request = new LoanRequest(PersonEmploymentType.IP, 78, 890988);
+        request = new LoanRequest(PersonEmploymentType.IP, 78, 890988, "Гена", "Петрович", "Пупыркин");
         //When
         LoanResponse response = loanCalcController.createRequest(request);
-        LoanResponseType actualresponsetype = response.getResponseType();
-        LoanResponseType expectedresponsetype = LoanResponseType.DEСLINED;
+        LoanResponseType actualResponseType = response.getResponseType();
+        LoanResponseType expectedResponseType = LoanResponseType.DEСLINED;
         //Then
-        assertEquals(expectedresponsetype, actualresponsetype);
+        assertEquals(expectedResponseType, actualResponseType);
     }
 }
 
